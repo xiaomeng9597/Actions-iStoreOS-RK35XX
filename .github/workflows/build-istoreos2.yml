@@ -218,5 +218,3 @@ jobs:
       with:
         keep_latest: 5
         delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
