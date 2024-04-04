@@ -19,7 +19,7 @@ jobs:
         rm -f ./rk35xx/.config
         wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS/station-p2/feeds.conf --no-check-certificate
         wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS/station-p2/config.buildinfo --no-check-certificate
-        sed -i "/CONFIG_TARGET_DEVICE_.*=.*/d" ./rk35xx/.config
+        sed -i "/CONFIG_TARGET_DEVICE_rockchip_.*=.*/d" ./rk35xx/.config
         sed -i "/CONFIG_PACKAGE_dtc=y/d" ./rk35xx/.config
         # sed -i "/CONFIG_PACKAGE_luci-app-istorex=m/d" ./rk35xx/.config
         sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_jp_tvbox\s*is\s*not\s*set/d" ./rk35xx/.config
