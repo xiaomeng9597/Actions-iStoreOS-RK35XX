@@ -16,8 +16,15 @@ jobs:
     - name: 下载架构编译配置文件
       run: |
         mkdir -p ./rk35xx
+        rm -f ./rk35xx/.config
         wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS/station-p2/feeds.conf --no-check-certificate
-        # wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS/station-p2/config.buildinfo --no-check-certificate
+        wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS/station-p2/config.buildinfo --no-check-certificate
+        sed -i "/CONFIG_TARGET_DEVICE_.*=.*/d" ./rk35xx/.config
+        sed -i "/CONFIG_PACKAGE_dtc=y/d" ./rk35xx/.config
+        # sed -i "/CONFIG_PACKAGE_luci-app-istorex=m/d" ./rk35xx/.config
+        sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_jp_tvbox\s*is\s*not\s*set/d" ./rk35xx/.config
+        sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_panther_x2\s*is\s*not\s*set/d" ./rk35xx/.config
+        echo -e "\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_easepi_ars4=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_fastrhino_r6xs=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_firefly_station-p2=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_friendlyarm_nanopi-r5s=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_friendlyarm_nanopi-r6s=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_hinlink_h88k=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_hinlink_opc-h6xk=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_hlink_h28k=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_idiskk_h1=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_lyt_t68m=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_nlnet_xgp=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_yyy_h1=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_jp_tvbox=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_panther_x2=y\\nCONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_dg_nas=y" >> ./rk35xx/.config
 
     - name: 同步配置
       uses: peaceiris/actions-gh-pages@v3
