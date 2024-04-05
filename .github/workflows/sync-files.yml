@@ -20,7 +20,7 @@ jobs:
         wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS/station-p2/feeds.conf --no-check-certificate
         wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS/station-p2/config.buildinfo --no-check-certificate
         content=$(cat $GITHUB_WORKSPACE/file/model.txt)
-        model_data=$(echo "$content" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
+        model_data=$(echo "$content" | sed "s/^[[:space:]]*//; s/[[:space:]]*$//")
         sed -i "/CONFIG_TARGET_DEVICE_rockchip_.*=.*/d" ./rk35xx/.config
         sed -i "/CONFIG_PACKAGE_dtc=y/d" ./rk35xx/.config
         # sed -i "/CONFIG_PACKAGE_luci-app-istorex=m/d" ./rk35xx/.config
