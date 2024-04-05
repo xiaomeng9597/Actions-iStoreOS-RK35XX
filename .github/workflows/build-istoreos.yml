@@ -206,7 +206,7 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: 删除运行记录
-      uses: GitRML/delete-workflow-runs@main
+      uses: xiaomeng9597/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 1
