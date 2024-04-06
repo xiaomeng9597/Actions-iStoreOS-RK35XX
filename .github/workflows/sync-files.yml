@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 准备完成
-      uses: actions/checkout@v2
+      uses: actions/checkout@main
 
     - name: 下载架构编译配置文件
       run: |
