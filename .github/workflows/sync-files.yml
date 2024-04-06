@@ -31,7 +31,7 @@ jobs:
         echo -e "\\n$model_data" >> ./rk35xx/.config
 
     - name: 同步配置
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@main
       with:
         personal_token: ${{ secrets.ACCESS_TOKEN }}
         publish_branch: main
