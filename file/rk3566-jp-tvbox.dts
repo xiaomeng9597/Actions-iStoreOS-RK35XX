@@ -632,6 +632,25 @@
 	status = "okay";
 };
 
+&i2c1 {
+	status = "okay";
+	clock-frequency = <100000>;
+};
+
+&spi3 {
+	status = "okay";
+	//assigned-clock-rates = <200000000>; //默认不用配置，SPI 设备工作时钟
+	max-freq = <48000000>; /* spi internal clk, don't modify */
+	//dma-names = "tx","rx"; //使能DMA模式
+	//rx-sample-delay-ns = <10>; //默认不用配置，读采样延时
+	spi_dev@0 {
+		compatible = "rockchip,spidev";
+		reg = <0>;
+		spi-max-frequency = <12000000>;
+		spi-lsb-first;
+	};
+};
+
 // video output
 
 &i2s0_8ch {
