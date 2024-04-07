@@ -7,8 +7,10 @@
 # Blog: https://p3terx.com
 #===============================================
 
-# 修改版本为编译日期
+# 修改版本为编译日期，数字类型。
 date_version=$(date +"%Y%m%d%H")
-# sed -i "s/0000000000/${date_version}/g" version
+echo $date_version > version
 
-echo "$date_version by xiaomeng9597" > version
+# 为iStoreOS固件版本加上编译作者
+sed -i "s/DISTRIB_DESCRIPTION.*=.*/DISTRIB_DESCRIPTION='%D %V $date_version by xiaomeng9597'/g" package/base-files/files/etc/openwrt_release
+sed -i "s/OPENWRT_RELEASE.*=.*/OPENWRT_RELEASE=\"%D %V $date_version by xiaomeng9597\"/g" package/base-files/files/usr/lib/os-release
