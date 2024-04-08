@@ -29,7 +29,6 @@ jobs:
         sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_panther_x2\s*is\s*not\s*set/d" ./rk35xx/.config
         sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_dg_nas\s*is\s*not\s*set/d" ./rk35xx/.config
         echo -e "\\n$configdata" >> ./rk35xx/.config
-        
         # 清除.config配置文件里面重复的配置项
         configdata2=$(cat ./rk35xx/.config)
         echo "$configdata2" | awk '!seen[$0]++' > ./rk35xx/.config
