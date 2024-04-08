@@ -20,7 +20,7 @@ jobs:
         wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS/station-p2/feeds.conf --no-check-certificate
         wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS/station-p2/config.buildinfo --no-check-certificate
 
-        content=$(cat $GITHUB_WORKSPACE/file/config_data.txt)
+        content=$(cat ${GITHUB_WORKSPACE}/file/config_data.txt)
         configdata=$(echo "$content" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
         sed -i "/CONFIG_TARGET_DEVICE_rockchip_.*=.*/d" ./rk35xx/.config
         sed -i "/CONFIG_PACKAGE_dtc.*=.*/d" ./rk35xx/.config
