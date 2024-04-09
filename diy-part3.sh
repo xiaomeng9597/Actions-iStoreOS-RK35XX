@@ -21,7 +21,7 @@
 # cp -f $GITHUB_WORKSPACE/file/02_network target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
 
 
-sed -i "s/option\s*script_timeout\s*60/option script_timeout 360/g" package/network/services/uhttpd/files/uhttpd.config
+# sed -i "s/option\s*script_timeout\s*60/option script_timeout 360/g" package/network/services/uhttpd/files/uhttpd.config
 
 
 
