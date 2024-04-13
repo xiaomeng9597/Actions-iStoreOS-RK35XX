@@ -22,7 +22,7 @@ jobs:
 
         FILE_PATH="./rk35xx/.config"
         if [ -f "$FILE_PATH" ] && [ -s "$FILE_PATH" ]; then
-           content=$(cat ${GITHUB_WORKSPACE}/file/config_data.txt)
+           content=$(cat ${GITHUB_WORKSPACE}/files/config_data.txt)
            configdata=$(echo "$content" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
            sed -i "/CONFIG_TARGET_DEVICE_rockchip_.*=.*/d" ./rk35xx/.config
            sed -i "/CONFIG_PACKAGE_dtc.*=.*/d" ./rk35xx/.config
