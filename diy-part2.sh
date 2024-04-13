@@ -73,4 +73,4 @@ cp -f $GITHUB_WORKSPACE/opfiles/rk3568-firefly-roc-pc-se.dts target/linux/rockch
 
 #增加黑豹X2的一键补全WiFi脚本进系统里
 cp -f $GITHUB_WORKSPACE/opfiles/brcmfmac43430-sdio-panther-x2.sh package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
-chmod 755 package/base-files/opfiles/sbin/brcmfmac43430-sdio-panther-x2.sh
+chmod 755 package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
