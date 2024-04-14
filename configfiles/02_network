@@ -1,0 +1,143 @@
+#!/bin/sh
+#
+# Copyright (C) 2013-2015 OpenWrt.org
+#
+
+. /lib/functions/uci-defaults.sh
+. /lib/functions/system.sh
+
+rockchip_setup_interfaces()
+{
+	local board="$1"
+
+	case "$board" in
+	armsom,sige7-v1|\
+	easepi,ars4|\
+	friendlyelec,nanopi-r5c|\
+	friendlyelec,nanopi-r6c|\
+	fastrhino,r66s|\
+	hinlink,h88k-v2|\
+	hinlink,h88k|\
+	hinlink,opc-h66k|\
+	hinlink,hnas|\
+	jsy,h1|\
+	nlnet,xgp|\
+	firefly,rk3568-roc-pc)
+		ucidef_set_interfaces_lan_wan 'eth1' 'eth0'
+		;;
+	hinlink,opc-h69k|\
+	friendlyelec,nanopi-r5s)
+		ucidef_set_interfaces_lan_wan "eth1 eth2" "eth0"
+		;;
+	lyt,t68m|\
+	fastrhino,r68s|\
+	hinlink,opc-h68k)
+		ucidef_set_interfaces_lan_wan 'eth1 eth2 eth3' 'eth0'
+		;;
+	friendlyelec,nanopi-r6s)
+		ucidef_set_interfaces_lan_wan 'eth2 eth0' 'eth1'
+		;;
+	hinlink,h88k-v3)
+		ucidef_set_interfaces_lan_wan 'eth1 eth2 eth3 eth4' 'eth0'
+		;;
+	hlink,h28k)
+		ucidef_set_interfaces_lan_wan 'eth0' 'eth1'
+		;;
+	inspur,ihec301)
+		ucidef_add_switch "switch0" \
+			"0:lan" "1:lan" "2:lan" "3:lan" "4:wan" "7t@eth0"
+		;;
+	*)
+		ucidef_set_interface_lan 'eth0' 'dhcp'
+		;;
+	esac
+}
+
+generate_mac_from_mmc()
+{
+	local sd_hash
+	local bootdisk=$(
+		. /lib/upgrade/common.sh
+		export_bootdevice && export_partdevice bootdisk 0 && echo $bootdisk
+	)
+	if echo "$bootdisk" | grep -q '^mmcblk' && [ -f "/sys/class/block/$bootdisk/device/cid" ]; then
+		sd_hash=$(sha256sum /sys/class/block/$bootdisk/device/cid | head -n 1)
+	else
+		sd_hash=$(sha256sum /sys/class/block/mmcblk*/device/cid | head -n 1)
+	fi
+	local mac_base=$(macaddr_canonicalize "$(echo "${sd_hash}" | dd bs=1 count=12 2>/dev/null)")
+	echo "$(macaddr_unsetbit_mc "$(macaddr_setbit_la "${mac_base}")")"
+}
+
+rockchip_setup_macs()
+{
+	local board="$1"
+	local lan_mac=""
+	local wan_mac=""
+
+	case "$board" in
+	armsom,sige7-v1|\
+	easepi,ars4|\
+	firefly,rk3568-roc-pc|\
+	friendlyelec,nanopi-r5s|\
+	friendlyelec,nanopi-r5c|\
+	friendlyelec,nanopi-r6s|\
+	friendlyelec,nanopi-r6c|\
+	hlink,h28k|\
+	hinlink,h88k-*|\
+	hinlink,h88k|\
+	hinlink,opc-h69k|\
+	hinlink,opc-h68k|\
+	hinlink,opc-h66k|\
+	hinlink,hnas|\
+	jsy,h1|\
+	yyy,h1|\
+	idiskk,h1|\
+	jp,tvbox|\
+	panther,x2|\
+	lyt,t68m|\
+	nlnet,xgp|\
+	fastrhino,r66s|\
+	fastrhino,r68s)
+		wan_mac=$(generate_mac_from_mmc)
+		lan_mac=$(macaddr_add "$wan_mac" 1)
+		;;
+	*)
+		lan_mac=$(generate_mac_from_mmc)
+		;;
+	esac
+
+	[ -n "$wan_mac" ] && ucidef_set_interface_macaddr "wan" $wan_mac
+	[ -n "$lan_mac" ] && ucidef_set_interface_macaddr "lan" $lan_mac
+}
+
+generate_wwan_uci()
+{
+	local device="$1"
+	ucidef_set_interface "wwan" device "$device" protocol "modemmanager" metric "100"
+	[ -f /rom/note -o -f /etc/config/network ] || uci get firewall.@zone[1].network | grep -qFw wwan || uci add_list firewall.@zone[1].network='wwan'
+}
+
+rockchip_setup_wwan()
+{
+	local board="$1"
+
+	case "$board" in
+	hinlink,opc-h69k)
+		generate_wwan_uci "/sys/devices/platform/usbhost/fd000000.dwc3/xhci-hcd.0.auto/usb4/4-1"
+		;;
+	hinlink,h88k-*|\
+	hinlink,h88k)
+		generate_wwan_uci "/sys/devices/platform/usbdrd3_1/fc400000.usb/xhci-hcd.4.auto/usb6/6-1/6-1.1"
+		;;
+	esac
+}
+
+board_config_update
+board=$(board_name)
+rockchip_setup_interfaces $board
+rockchip_setup_macs $board
+rockchip_setup_wwan $board
+board_config_flush
+
+exit 0
