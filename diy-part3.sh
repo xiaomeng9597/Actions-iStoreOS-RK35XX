@@ -48,3 +48,11 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3566-panther-x2.dts target/linux/rockchip/
 #增加黑豹X2的一键补全WiFi脚本进系统里
 cp -f $GITHUB_WORKSPACE/configfiles/brcmfmac43430-sdio-panther-x2.sh package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
 chmod 755 package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
+
+
+
+#禁用uhttpd，启用nginx
+# sed -i '/.*\/etc\/init.d.*/d' package/network/services/uhttpd/Makefile
+# sed -i '/.*.\/files\/uhttpd.init.*/d' package/network/services/uhttpd/Makefile
+cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
+# ls package/base-files/files/etc/
