@@ -46,6 +46,13 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3566-panther-x2.dts target/linux/rockchip/
 
 
 
+#禁用uhttpd，启用nginx
+# sed -i '/.*\/etc\/init.d.*/d' package/network/services/uhttpd/Makefile
+# sed -i '/.*.\/files\/uhttpd.init.*/d' package/network/services/uhttpd/Makefile
+cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
+# ls package/base-files/files/etc/
+
+
 
 
 
