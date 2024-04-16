@@ -15,3 +15,10 @@ CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_yyy_h1=y
 CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_jp_tvbox=y
 CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_panther_x2=y
 CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_dg_nas=y
+
+CONFIG_PACKAGE_nginx=y
+CONFIG_PACKAGE_nginx-ssl=y
+CONFIG_PACKAGE_nginx-ssl-util=y
+CONFIG_PACKAGE_nginx-util=y
+CONFIG_PACKAGE_nginx-mod-luci=y
+CONFIG_PACKAGE_luci-nginx=y
