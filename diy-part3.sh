@@ -45,14 +45,18 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3566-jp-tvbox.dts target/linux/rockchip/dt
 cp -f $GITHUB_WORKSPACE/configfiles/rk3566-panther-x2.dts target/linux/rockchip/dts/rk3568/rk3566-panther-x2.dts
 
 
+
+#修改uhttpd配置文件，启用nginx
+# sed -i "/.*uhttpd.*/d" .config
+# sed -i '/.*\/etc\/init.d.*/d' package/network/services/uhttpd/Makefile
+# sed -i '/.*.\/files\/uhttpd.init.*/d' package/network/services/uhttpd/Makefile
+sed -i 's/:80/:81/g' package/network/services/uhttpd/files/uhttpd.config
+sed -i 's/:443/:4443/g' package/network/services/uhttpd/files/uhttpd.config
+cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
+# ls package/base-files/files/etc/
+
+
+
 #增加黑豹X2的一键补全WiFi脚本进系统里
 cp -f $GITHUB_WORKSPACE/configfiles/brcmfmac43430-sdio-panther-x2.sh package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
 chmod 755 package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
-
-
-
-#禁用uhttpd，启用nginx
-# sed -i '/.*\/etc\/init.d.*/d' package/network/services/uhttpd/Makefile
-# sed -i '/.*.\/files\/uhttpd.init.*/d' package/network/services/uhttpd/Makefile
-cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
-# ls package/base-files/files/etc/
