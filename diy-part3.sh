@@ -56,12 +56,6 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 
 
 
-# 为iStoreOS固件版本加上编译作者
-author="xiaomeng9597"
-sed -i "s/DISTRIB_DESCRIPTION.*=.*/DISTRIB_DESCRIPTION='%D %V $date_version by $author'/g" package/base-files/files/etc/openwrt_release
-sed -i "s/OPENWRT_RELEASE.*=.*/OPENWRT_RELEASE=\"%D %V $date_version by $author\"/g" package/base-files/files/usr/lib/os-release
-
-
 #增加黑豹X2的一键补全WiFi脚本进系统里
 cp -f $GITHUB_WORKSPACE/configfiles/brcmfmac43430-sdio-panther-x2.sh package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
 chmod 755 package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
