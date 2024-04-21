@@ -25,8 +25,8 @@ jobs:
            content=$(cat ${GITHUB_WORKSPACE}/configfiles/config_data.txt)
            configdata=$(echo "$content" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
            sed -i "/CONFIG_TARGET_DEVICE_rockchip_.*=.*/d" ./rk35xx/.config
-           sed -i "/CONFIG_PACKAGE_dtc.*/d" ./rk35xx/.config
-           sed -i "/CONFIG_PACKAGE_luci-app-istorex.*/d" ./rk35xx/.config
+           sed -i "/CONFIG_PACKAGE_dtc.*=.*/d" ./rk35xx/.config
+           sed -i "/CONFIG_PACKAGE_luci-app-istorex.*=.*/d" ./rk35xx/.config
            sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_jp_tvbox\s*is\s*not\s*set/d" ./rk35xx/.config
            sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_panther_x2\s*is\s*not\s*set/d" ./rk35xx/.config
            sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_dg_nas\s*is\s*not\s*set/d" ./rk35xx/.config
