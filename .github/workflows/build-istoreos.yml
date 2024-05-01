@@ -194,7 +194,7 @@ jobs:
 
         🔒 密码: password
 
-        📒 说明: 单网口设备默认网口为LAN，旁路由模式，需要插入主路由后进后台查找对应IP地址访问，反之双网口设备默认网口为WAN+LAN，主路由模式。 " >> release.txt
+        📒 说明: 单网口设备默认网口为LAN，旁路由模式，需要接入主路由后进后台查找对应IP地址访问，反之双网口设备默认网口为WAN+LAN，主路由模式。 " >> release.txt
         echo "status=success" >> ${GITHUB_OUTPUT}
 
     - name: 自动发布固件到 Releases
