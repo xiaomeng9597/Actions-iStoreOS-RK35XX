@@ -56,6 +56,5 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 
 
 
-#增加黑豹X2的一键补全WiFi脚本进系统里
-# cp -f $GITHUB_WORKSPACE/configfiles/brcmfmac43430-sdio-panther-x2.sh package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
-# chmod 755 package/base-files/files/sbin/brcmfmac43430-sdio-panther-x2.sh
+#集成黑豹X2和荐片TV盒子无线功能
+cp -a $GITHUB_WORKSPACE/configfiles/firmware/* package/firmware/
