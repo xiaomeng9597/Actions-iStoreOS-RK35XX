@@ -58,3 +58,9 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 
 #集成黑豹X2和荐片TV盒子无线功能
 cp -a $GITHUB_WORKSPACE/configfiles/firmware/* package/firmware/
+
+
+#集成CPU性能跑分脚本
+cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/sbin/
+chmod 755 package/base-files/files/sbin/coremark
+chmod 755 package/base-files/files/sbin/coremark.sh
