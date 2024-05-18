@@ -21,9 +21,6 @@
 # cp -f $GITHUB_WORKSPACE/configfiles/02_network target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
 
 
-# sed -i "s/option\s*script_timeout\s*60/option script_timeout 360/g" package/network/services/uhttpd/files/uhttpd.config
-
-
 
 
 # 修改内核配置文件
