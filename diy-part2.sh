@@ -80,7 +80,7 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se.dts target/linux/ro
 
 
 
-#集成黑豹X2和荐片TV盒子无线功能和开启无线功能
+#集成黑豹X2和荐片TV盒子无线功能并且开启无线功能
 cp -a $GITHUB_WORKSPACE/configfiles/firmware/* package/firmware/
 # cp -f $GITHUB_WORKSPACE/configfiles/rc.local package/base-files/files/etc/rc.local
 sed -i "s/wireless.radio\${devidx}.disabled=1/wireless.radio\${devidx}.disabled=0/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
