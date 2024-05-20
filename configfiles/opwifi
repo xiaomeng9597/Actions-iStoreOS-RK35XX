@@ -5,16 +5,13 @@ STOP=10
 
 start() {
 	/sbin/wifi up
-	return 0
 }
 
 stop() {
 	/sbin/wifi down
-	return 0
 }
 
 restart() {
-    if stop; then
-        start
-    fi
+	stop
+	start
 }
