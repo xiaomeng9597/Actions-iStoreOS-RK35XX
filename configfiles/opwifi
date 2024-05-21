@@ -4,15 +4,15 @@ START=99
 STOP=10
 
 start() {
-	sleep 60
-	/sbin/wifi up
+    sleep 60
+    /sbin/wifi up
 }
 
 stop() {
-	/sbin/wifi down
+    /sbin/wifi down
 }
 
 restart() {
-	/sbin/wifi down
-	/sbin/wifi up
+    /sbin/wifi down
+    /sbin/wifi up
 }
