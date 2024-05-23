@@ -7,6 +7,11 @@
 # Blog: https://p3terx.com
 #===============================================
 
+
+#update ubus git HEAD
+cp -f $GITHUB_WORKSPACE/configfiles/ubus_Makefile package/system/ubus/Makefile
+
+
 # 移植黑豹x2
 
 # rm -f target/linux/rockchip/image/rk35xx.mk
