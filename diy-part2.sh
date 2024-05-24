@@ -8,8 +8,12 @@
 #===============================================
 
 
-#update ubus git HEAD
+# update ubus git HEAD
 cp -f $GITHUB_WORKSPACE/configfiles/ubus_Makefile package/system/ubus/Makefile
+
+
+# 增加一个自定义下载网址
+sed -i "s/push @mirrors, 'https:\/\/mirror2.openwrt.org\/sources';/&\npush @mirrors, 'https:\/\/github.com\/xiaomeng9597\/files\/releases\/download\/linkmount';/g" scripts/download.pl
 
 
 # 移植黑豹x2
@@ -74,9 +78,9 @@ TARGET_DEVICES += dg_nas" >> target/linux/rockchip/image/rk35xx.mk
 
 
 
-sed -i "s/panther,x2|\\\/panther,x2|\\\\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-files/lib/board/init.sh
+sed -i "s/panther,x2|\\\/&\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-files/lib/board/init.sh
 
-sed -i "s/panther,x2|\\\/panther,x2|\\\\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
+sed -i "s/panther,x2|\\\/&\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
 
 
 cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se-core.dtsi target/linux/rockchip/dts/rk3568/rk3568-firefly-roc-pc-se-core.dtsi
