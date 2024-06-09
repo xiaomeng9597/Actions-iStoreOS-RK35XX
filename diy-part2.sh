@@ -89,6 +89,14 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se.dts target/linux/ro
 
 
 
+#轮询检查ubus服务是否崩溃，崩溃就重启
+cp -f $GITHUB_WORKSPACE/configfiles/httpubus package/base-files/files/etc/init.d/httpubus
+cp -f $GITHUB_WORKSPACE/configfiles/ubus-status.sh package/base-files/files/sbin/ubus-status.sh
+chmod 755 package/base-files/files/etc/init.d/httpubus
+chmod 755 package/base-files/files/sbin/ubus-status.sh
+
+
+
 #集成黑豹X2和荐片TV盒子无线功能并且开启无线功能
 cp -a $GITHUB_WORKSPACE/configfiles/firmware/* package/firmware/
 cp -f $GITHUB_WORKSPACE/configfiles/opwifi package/base-files/files/etc/init.d/opwifi
