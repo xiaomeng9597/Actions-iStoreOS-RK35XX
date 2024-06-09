@@ -11,12 +11,12 @@ do
     elif [ -z "$pid2" ]; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         /sbin/ubusd &
-        killall -9 rpcd
+        killall rpcd
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     else
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
-        killall -9 ubusd
-        killall -9 rpcd
+        killall ubusd
+        killall rpcd
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     fi
     sleep 60
