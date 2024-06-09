@@ -2,11 +2,11 @@
 
 while true
 do
-    nginx_status=$(/etc/init.d/dbus status | grep -o "running")
+    dbus_status=$(/etc/init.d/dbus status | grep -o "running")
     datetime=$(date +"%Y-%m-%d %H:%M:%S")
     pidv=$(pgrep "ubusd" | head -n 1)
 
-    if [ -n "$nginx_status" ]; then
+    if [ -n "$dbus_status" ]; then
         echo "$datetime / Ubus服务正在运行，一切正常。"
     elif [ -z "$pidv" ]; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
