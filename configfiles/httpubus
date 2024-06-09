@@ -1,0 +1,20 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=11
+
+start() {
+    /sbin/ubus-status.sh > /dev/null 2>&1 &
+}
+
+stop() {
+    pid=$(pgrep "ubus-status" | head -n 1)
+    if [ -n "$pid" ]; then
+        kill -9 "$pid"
+    fi
+}
+
+restart() {
+    stop
+    start
+}
