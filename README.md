@@ -68,7 +68,7 @@
 - [peter-evans/repository-dispatch](https://github.com/peter-evans/repository-dispatch)
 
 ## 捐赠
-- 如果你觉得此系统好用，请我喝一杯82年的凉白开吧，感谢！
+- 如果你觉得此系统好用的话，请我喝一杯82年的凉白开吧，感谢！
 
 -支付宝-
 # <img src="https://jihulab.com/xiaomeng9597/webfiles/-/raw/main/zfb.jpg?inline=true" alt="支付宝收款码" title="Title" width="200" />
