@@ -71,7 +71,7 @@
 - 如果你觉得此系统好用的话，请我喝一杯82年的凉白开吧，感谢！
 
 -支付宝-
-# <img src="https://jihulab.com/xiaomeng9597/webfiles/-/raw/main/zfb.jpg?inline=true" alt="支付宝收款码" title="Title" width="200" />
+# <img src="https://jihulab.com/xiaomeng9597/webfiles/-/raw/main/zfb.jpg?inline=true" alt="支付宝收款码" width="200" />
 
 -微信-
-# <img src="https://jihulab.com/xiaomeng9597/webfiles/-/raw/main/weixin.jpg?inline=true" alt="微信收款码" title="Title" width="200" />
+# <img src="https://jihulab.com/xiaomeng9597/webfiles/-/raw/main/weixin.jpg?inline=true" alt="微信收款码" width="200" />
