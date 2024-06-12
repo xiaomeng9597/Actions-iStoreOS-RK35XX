@@ -30,6 +30,10 @@ jobs:
            sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_jp_tvbox\s*is\s*not\s*set/d" ./rk35xx/.config
            sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_panther_x2\s*is\s*not\s*set/d" ./rk35xx/.config
            sed -i "/#\s*CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_dg_nas\s*is\s*not\s*set/d" ./rk35xx/.config
+           # sed -i "s/CONFIG_PACKAGE_rtl8821ce-firmware=y/CONFIG_PACKAGE_rtl8821ce-firmware=n/" ./rk35xx/.config
+           sed -i "s/^\(CONFIG_PACKAGE_rtl[0-9a-z-]*firmware\)=y$/\1=n/" ./rk35xx/.config
+           sed -i "s/CONFIG_PACKAGE_kmod-rtw88-oot=y/CONFIG_PACKAGE_kmod-rtw88-oot=n/" ./rk35xx/.config
+           sed -i "s/CONFIG_PACKAGE_kmod-rtw89-oot=y/CONFIG_PACKAGE_kmod-rtw89-oot=n/" ./rk35xx/.config
            echo -e "\\n$configdata" >> ./rk35xx/.config
            # 清除.config配置文件里面重复的配置项
            configdata2=$(cat ./rk35xx/.config)
