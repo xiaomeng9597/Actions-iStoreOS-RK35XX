@@ -4,18 +4,20 @@ while true
 do
     dbus_status=$(/etc/init.d/dbus status)
     status_code=$(curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
-    page_content=$(curl -s http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
-    datetime=$(date +"%Y-%m-%d %H:%M:%S")
-    pidv=$(pgrep "ubusd" | head -n 1)
-    pidv2=$(pgrep "rpcd" | head -n 1)
-
     if [ -z "$status_code" ]; then
         status_code="ERROR"
     fi
 
+    if [[ "$status_code" == 500 || "$status_code" == 502 ]]; then
+        page_content=$(curl -s http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
+    fi
     if [ -z "$page_content" ]; then
         page_content="ERROR"
     fi
+
+    datetime=$(date +"%Y-%m-%d %H:%M:%S")
+    pidv=$(pgrep "ubusd" | head -n 1)
+    pidv2=$(pgrep "rpcd" | head -n 1)
 
     if [ -z "$pidv" ]; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
