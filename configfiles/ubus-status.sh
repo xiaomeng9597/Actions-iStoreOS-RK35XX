@@ -2,39 +2,47 @@
 
 while true
 do
-    dbus_status=$(/etc/init.d/dbus status)
+    dbus_status=$(/etc/init.d/dbus status 2>&1)
     status_code=$(curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
     if [ -z "$status_code" ]; then
         status_code="ERROR"
     fi
 
-    if [[ "$status_code" == 500 || "$status_code" == 502 ]]; then
-        page_content=$(curl -s http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
-    fi
-    if [ -z "$page_content" ]; then
-        page_content="ERROR"
-    fi
-
     datetime=$(date +"%Y-%m-%d %H:%M:%S")
+    pidcount=$(pgrep "ubusd" | wc -l)
     pidv=$(pgrep "ubusd" | head -n 1)
     pidv2=$(pgrep "rpcd" | head -n 1)
 
-    if [ -z "$pidv" ]; then
-        echo "$datetime / Ubus服务异常，正在重启Ubus。"
-        /sbin/ubusd &
-    elif [ -z "$pidv2" ]; then
-        echo "$datetime / Ubus服务异常，正在重启Ubus。"
+    if [ $pidcount -gt 1 ]; then
+        killall ubusd
+        killall rpcd
+        sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
-    elif ((echo "$page_content" | grep -q "dispatcher.lua:430" || echo "$page_content" | grep -q "dispatcher.lua:") && echo "$dbus_status" | grep -q "running") || ([[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"); then
+    fi
+
+    if [ -z "$pidv" ]; then
+        /sbin/ubusd &
+        killall rpcd
+        sleep 1
+        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+    fi
+
+    if [ -z "$pidv2" ]; then
+        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+    fi
+
+    if [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         killall rpcd
-        /etc/init.d/rpcd restart
+        sleep 1
+        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     elif echo "$dbus_status" | grep -q "running"; then
         echo "$datetime / Ubus服务正在运行，一切正常。"
     else
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         killall ubusd
         killall rpcd
+        sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     fi
     sleep 60
