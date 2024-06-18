@@ -30,11 +30,10 @@ do
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     fi
 
-    if [ "$(pgrep rpcd | wc -l)" -eq 0 ]; then
+    if [ "$(pgrep rpcd | wc -l)" -eq 0 ] && [ "$pidcount" -eq 1 ]; then
+        echo "$datetime / Ubus服务异常，正在重启Ubus。"
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
-    fi
-
-    if [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
+    elif [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         killall rpcd
         sleep 1
