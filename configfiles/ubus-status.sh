@@ -10,11 +10,18 @@ do
 
     datetime=$(date +"%Y-%m-%d %H:%M:%S")
     pidcount=$(pgrep "ubusd" | wc -l)
+    pidcount2=$(pgrep "rpcd" | wc -l)
     pidv=$(pgrep "ubusd" | head -n 1)
     pidv2=$(pgrep "rpcd" | head -n 1)
 
-    if [ $pidcount -gt 1 ]; then
+    if [ "$pidcount" -gt 1 ]; then
         killall ubusd
+        killall rpcd
+        sleep 1
+        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+    fi
+
+    if [ "$pidcount2" -gt 1 ] && [ "$pidcount" -eq 1 ]; then
         killall rpcd
         sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
