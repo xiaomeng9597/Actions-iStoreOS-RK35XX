@@ -3,14 +3,31 @@
 START=99
 STOP=11
 
+board_name() {
+    [ -e /tmp/sysinfo/board_name ] && cat /tmp/sysinfo/board_name || echo "generic"
+}
+
+check_model() {
+    local board=$(board_name)
+    case "$board" in
+        jp,tvbox|\
+        panther,x2)
+            /sbin/ubus-status.sh > /dev/null 2>&1 &
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
 start() {
-    /sbin/ubus-status.sh > /dev/null 2>&1 &
+    check_model
 }
 
 stop() {
-    pid=$(pgrep "ubus-status" | head -n 1)
-    if [ -n "$pid" ]; then
-        kill -9 "$pid"
+    pidcount=$(pgrep "ubus-status" | wc -l)
+    if [ "$pidcount" -eq 1 ]; then
+        killall -9 ubus-status
     fi
 }
 
