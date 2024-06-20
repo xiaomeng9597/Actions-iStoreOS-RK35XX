@@ -25,7 +25,7 @@ start() {
 }
 
 stop() {
-    pidcount=$(pgrep "ubus-status" | wc -l)
+    local pidcount=$(pgrep "ubus-status" | wc -l)
     if [ "$pidcount" -eq 1 ]; then
         killall -9 ubus-status
     fi
