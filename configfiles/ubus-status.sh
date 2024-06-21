@@ -1,9 +1,8 @@
 #!/bin/sh
 
-while true
-do
-    pidcount=$(pgrep "ubusd" | wc -l)
-    pidcount2=$(pgrep "rpcd" | wc -l)
+check_ubus() {
+    local pidcount=$(pgrep "ubusd" | wc -l)
+    local pidcount2=$(pgrep "rpcd" | wc -l)
 
     if [ "$pidcount" -gt 1 ]; then
         killall ubusd
@@ -21,11 +20,11 @@ do
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     fi
 
-    datetime=$(date +"%Y-%m-%d %H:%M:%S")
-    dbus_status=$(/etc/init.d/dbus status 2>&1)
-    status_code=$(curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
+    local datetime=$(date +"%Y-%m-%d %H:%M:%S")
+    local dbus_status=$(/etc/init.d/dbus status 2>&1)
+    local status_code=$(curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
     if [ -z "$status_code" ]; then
-        status_code="ERROR"
+        local status_code="ERROR"
     fi
 
     if [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
@@ -42,5 +41,9 @@ do
         sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     fi
+}
+
+while true; do
+check_ubus
     sleep 60
 done
