@@ -24,7 +24,7 @@ check_ubus() {
     local dbus_status=$(/etc/init.d/dbus status 2>&1)
     local status_code=$(curl -o /dev/null -s -w "%{http_code}\n" http://127.0.0.1/cgi-bin/luci/ 2>/dev/null)
     if [ -z "$status_code" ]; then
-        local status_code="ERROR"
+        status_code="ERROR"
     fi
 
     if [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
