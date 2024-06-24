@@ -5,6 +5,7 @@ PKG_NAME:=brcmfmac-firmware-jp-tvbox
 PKG_SOURCE_URL:=https://github.com/xiaomeng9597/brcmfmac_sdio-firmware.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=72b01a367f7e718250de12e7c0d5d335ab9866a8
+PKG_MIRROR_HASH:=skip
 
 include $(INCLUDE_DIR)/package.mk
 
