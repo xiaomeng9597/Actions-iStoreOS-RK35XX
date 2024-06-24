@@ -13,11 +13,8 @@ check_ubus() {
     fi
 
     if [ "$(pgrep ubusd | wc -l)" -eq 0 ]; then
+        sleep 1
         /sbin/ubusd &
-    fi
-
-    if [ "$(pgrep rpcd | wc -l)" -eq 0 ] && [ "$(pgrep ubusd | wc -l)" -eq 1 ]; then
-        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     fi
 
     local datetime=$(date +"%Y-%m-%d %H:%M:%S")
@@ -27,7 +24,11 @@ check_ubus() {
         status_code="ERROR"
     fi
 
-    if [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
+    if [ "$(pgrep rpcd | wc -l)" -eq 0 ] && [ "$(pgrep ubusd | wc -l)" -eq 1 ]; then
+        echo "$datetime / Ubus服务异常，正在重启Ubus。"
+        sleep 1
+        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+    elif [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         killall rpcd
         sleep 1
