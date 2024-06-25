@@ -37,7 +37,6 @@ check_ubus() {
         echo "$datetime / Ubus服务正在运行，一切正常。"
     else
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
-        killall ubusd
         killall rpcd
         sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
