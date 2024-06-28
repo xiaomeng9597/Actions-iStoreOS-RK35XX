@@ -28,7 +28,7 @@ fi
 
 echo "testing coremark ... "
 sleep 1
-COREMARK=$(/sbin/coremark | tail -n 1 | awk '{print $4}')
+COREMARK=$(/bin/coremark | tail -n 1 | awk '{print $4}')
 # 分数取整
 # COREMARK=${COREMARK%.*}
 echo "CPU CoreMark : $COREMARK"
