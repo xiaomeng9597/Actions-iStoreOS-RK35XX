@@ -91,9 +91,9 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se.dts target/linux/ro
 
 #轮询检查ubus服务是否崩溃，崩溃就重启ubus服务
 cp -f $GITHUB_WORKSPACE/configfiles/httpubus package/base-files/files/etc/init.d/httpubus
-cp -f $GITHUB_WORKSPACE/configfiles/ubus-status.sh package/base-files/files/sbin/ubus-status.sh
+cp -f $GITHUB_WORKSPACE/configfiles/ubus-status.sh package/base-files/files/bin/ubus-status.sh
 chmod 755 package/base-files/files/etc/init.d/httpubus
-chmod 755 package/base-files/files/sbin/ubus-status.sh
+chmod 755 package/base-files/files/bin/ubus-status.sh
 
 
 
@@ -106,6 +106,6 @@ sed -i "s/wireless.radio\${devidx}.disabled=1/wireless.radio\${devidx}.disabled=
 
 
 #集成CPU性能跑分脚本
-cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/sbin/
-chmod 755 package/base-files/files/sbin/coremark
-chmod 755 package/base-files/files/sbin/coremark.sh
+cp -a $GITHUB_WORKSPACE/configfiles/coremark/* package/base-files/files/bin/
+chmod 755 package/base-files/files/bin/coremark
+chmod 755 package/base-files/files/bin/coremark.sh
