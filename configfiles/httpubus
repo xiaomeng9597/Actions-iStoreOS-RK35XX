@@ -12,7 +12,7 @@ check_model() {
     case "$board" in
         jp,tvbox|\
         panther,x2)
-            /sbin/ubus-status.sh > /dev/null 2>&1 &
+            /bin/ubus-status.sh > /dev/null 2>&1 &
             ;;
         *)
             return 1
