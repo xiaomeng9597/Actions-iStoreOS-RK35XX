@@ -1,5 +1,15 @@
 #!/bin/sh
 
+rpcd_start() {
+    rpcdstr=$(/sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &)
+    if echo "$rpcdstr" | grep -q "Failed" || echo "$rpcdstr" | grep -q "Failed to connect to ubus"; then
+        killall ubusd 2>/dev/null
+        sleep 1
+        /sbin/ubusd &
+        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+    fi
+}
+
 check_ubus() {
     local pidcount=$(pgrep "ubusd" | wc -l)
     local pidcount2=$(pgrep "rpcd" | wc -l)
@@ -27,19 +37,19 @@ check_ubus() {
     if [ "$(pgrep rpcd | wc -l)" -eq 0 ] && [ "$(pgrep ubusd | wc -l)" -eq 1 ]; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         sleep 1
-        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+        rpcd_start
     elif [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$dbus_status" | grep -q "running"; then
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         killall rpcd
         sleep 1
-        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+        rpcd_start
     elif echo "$dbus_status" | grep -q "running"; then
         echo "$datetime / Ubus服务正在运行，一切正常。"
     else
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
         killall rpcd
         sleep 1
-        /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+        rpcd_start
     fi
 }
 
