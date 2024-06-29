@@ -2,10 +2,9 @@
 
 rpcd_start() {
     rpcdstr=$(/etc/init.d/dbus status 2>&1)
-    if echo "$rpcdstr" | grep -q "Failed" || echo "$rpcdstr" | grep -q "Failed to connect to ubus"; then
+    if echo "$rpcdstr" | grep -q "Failed" || echo "$rpcdstr" | grep -q "Failed to connect to ubus" || echo "$rpcdstr" | grep -q "inactive"; then
         killall ubusd 2>/dev/null
         sleep 1
-        /sbin/ubusd &
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
     else
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
