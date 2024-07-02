@@ -28,7 +28,6 @@
 
 	chosen: chosen {
 		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 root=PARTUUID=614e0000-0000 rw rootwait";
-		//stdout-path = "serial2:1500000n8";
 	};
 
 	fiq_debugger: fiq-debugger {
