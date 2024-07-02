@@ -40,7 +40,7 @@ check_ubus() {
         killall rpcd 2>/dev/null
         sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
-    elif echo "$rpcd_status" | grep -q "running"; then
+    elif [ "$(pgrep ubusd | wc -l)" -eq 1 ] && echo "$rpcd_status" | grep -q "running"; then
         echo "$datetime / Ubus服务正在运行，一切正常。"
     else
         echo "$datetime / Ubus服务异常，正在重启Ubus。"
