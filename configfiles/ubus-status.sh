@@ -1,25 +1,19 @@
 #!/bin/sh
 
 check_ubus() {
-    local pidcount=$(pgrep "ubusd" | wc -l)
-    local pidcount2=$(pgrep "rpcd" | wc -l)
-
-    if [ "$pidcount" -gt 1 ]; then
-        killall ubusd 2>/dev/null
-    fi
-
-    if [ "$pidcount2" -gt 2 ] && [ "$pidcount" -eq 1 ]; then
+    if [ "$(pgrep rpcd | wc -l)" -gt 2 ]; then
         killall rpcd 2>/dev/null
+        sleep 1
     fi
 
     if [ "$(pgrep ubusd | wc -l)" -eq 0 ]; then
-        sleep 1
         /sbin/ubusd &
+        sleep 1
     fi
 
     if [ "$(pgrep rpcd | wc -l)" -eq 0 ] && [ "$(pgrep ubusd | wc -l)" -eq 1 ]; then
-        sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
+        sleep 1
     fi
 
     local datetime=$(date +"%Y-%m-%d %H:%M:%S")
@@ -40,7 +34,7 @@ check_ubus() {
         killall rpcd 2>/dev/null
         sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
-    elif [ "$(pgrep ubusd | wc -l)" -eq 1 ] && echo "$rpcd_status" | grep -q "running"; then
+    elif echo "$rpcd_status" | grep -q "running"; then
         echo "$datetime / Ubus服务正在运行，一切正常。"
     fi
 }
