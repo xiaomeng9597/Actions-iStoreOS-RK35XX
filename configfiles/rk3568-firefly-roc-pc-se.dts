@@ -13,9 +13,6 @@
 
 / {
 /*
-	model = "QNAP TS-416 (SDK)";
-	compatible = "rockchip,rk3568-evb1-ddr4-v10", "rockchip,rk3568";
-
     model = "Rockchip RK3568 DG NAS LITE";
 	compatible = "rockchip,dg-nas-lite", "rockchip,rk3568";
 */
