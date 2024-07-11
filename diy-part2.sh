@@ -65,11 +65,11 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 
 
 
-# 增加ido3568 DG NAS
+# 增加ido3568 DG NAS LITE
 echo -e "\\ndefine Device/dg_nas
 \$(call Device/rk3568)
   DEVICE_VENDOR := DG
-  DEVICE_MODEL := NAS
+  DEVICE_MODEL := NAS LITE
   DEVICE_DTS := rk3568-firefly-roc-pc-se
   SUPPORTED_DEVICES += dg,nas
   DEVICE_PACKAGES := kmod-nvme kmod-scsi-core
