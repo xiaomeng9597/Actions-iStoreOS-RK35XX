@@ -12,7 +12,7 @@ check_model() {
     case "$board" in
         jp,tvbox|\
         panther,x2)
-            /bin/ubus-status.sh > /dev/null 2>&1 &
+            /bin/ubus-examine.sh > /dev/null 2>&1 &
             ;;
         *)
             return 1
@@ -25,12 +25,12 @@ start() {
 }
 
 stop() {
-    local pidcount=$(pgrep "ubus-status" | wc -l)
+    local pidcount=$(pgrep "ubus-examine" | wc -l)
     if [ "$pidcount" -eq 0 ]; then
-        pidcount=$(pgrep "ubus-status.sh" | wc -l)
+        pidcount=$(pgrep "ubus-examine.sh" | wc -l)
     fi
     if [ "$pidcount" -gt 0 ]; then
-        killall -9 ubus-status ubus-status.sh 2>/dev/null
+        killall -9 ubus-examine ubus-examine.sh 2>/dev/null
     fi
 }
 
