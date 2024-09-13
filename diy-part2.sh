@@ -16,7 +16,9 @@ cp -f $GITHUB_WORKSPACE/configfiles/ubus_Makefile package/system/ubus/Makefile
 sed -i "s/push @mirrors, 'https:\/\/mirror2.openwrt.org\/sources';/&\\npush @mirrors, 'https:\/\/github.com\/xiaomeng9597\/files\/releases\/download\/iStoreosFile';/g" scripts/download.pl
 
 
-# 移植黑豹x2
+
+# 移植黑豹x2（这些配置文件上游仓库已经有了不用在复制了）
+# 上游仓库地址：https://github.com/istoreos/istoreos
 
 # rm -f target/linux/rockchip/image/rk35xx.mk
 # cp -f $GITHUB_WORKSPACE/configfiles/rk35xx.mk target/linux/rockchip/image/rk35xx.mk
