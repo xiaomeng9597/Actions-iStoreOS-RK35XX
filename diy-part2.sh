@@ -17,23 +17,6 @@ sed -i "s/push @mirrors, 'https:\/\/mirror2.openwrt.org\/sources';/&\\npush @mir
 
 
 
-# 移植黑豹x2（这些配置文件上游仓库已经有了不用在复制了）
-# 上游仓库地址：https://github.com/istoreos/istoreos
-
-# rm -f target/linux/rockchip/image/rk35xx.mk
-# cp -f $GITHUB_WORKSPACE/configfiles/rk35xx.mk target/linux/rockchip/image/rk35xx.mk
-
-
-# rm -f target/linux/rockchip/rk35xx/base-files/lib/board/init.sh
-# cp -f $GITHUB_WORKSPACE/configfiles/init.sh target/linux/rockchip/rk35xx/base-files/lib/board/init.sh
-
-
-# rm -f target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
-# cp -f $GITHUB_WORKSPACE/configfiles/02_network target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
-
-
-
-
 # 修改内核配置文件
 # rm -f target/linux/rockchip/rk35xx/config-5.10
 # cp -f $GITHUB_WORKSPACE/configfiles/config-5.10 target/linux/rockchip/rk35xx/config-5.10
@@ -51,6 +34,10 @@ cp -f $GITHUB_WORKSPACE/configfiles/rk3566-jp-tvbox.dts target/linux/rockchip/dt
 
 cp -f $GITHUB_WORKSPACE/configfiles/rk3566-panther-x2.dts target/linux/rockchip/dts/rk3568/rk3566-panther-x2.dts
 
+cp -f $GITHUB_WORKSPACE/configfiles/rk3568-dg-nas-lite-core.dtsi target/linux/rockchip/dts/rk3568/rk3568-dg-nas-lite-core.dtsi
+
+cp -f $GITHUB_WORKSPACE/configfiles/rk3568-dg-nas-lite.dts target/linux/rockchip/dts/rk3568/rk3568-dg-nas-lite.dts
+
 
 
 #修改uhttpd配置文件，启用nginx
@@ -63,31 +50,6 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 # ls package/base-files/files/etc/
 
 
-
-
-
-
-# 增加ido3568 DG NAS LITE
-echo -e "\\ndefine Device/dg_nas
-\$(call Device/rk3568)
-  DEVICE_VENDOR := DG
-  DEVICE_MODEL := NAS LITE
-  DEVICE_DTS := rk3568-firefly-roc-pc-se
-  SUPPORTED_DEVICES += dg,nas
-  DEVICE_PACKAGES := kmod-nvme kmod-scsi-core
-endef
-TARGET_DEVICES += dg_nas" >> target/linux/rockchip/image/rk35xx.mk
-
-
-
-sed -i "s/panther,x2|\\\/&\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-files/lib/board/init.sh
-
-sed -i "s/panther,x2|\\\/&\\n	dg,nas|\\\/g" target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
-
-
-cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se-core.dtsi target/linux/rockchip/dts/rk3568/rk3568-firefly-roc-pc-se-core.dtsi
-
-cp -f $GITHUB_WORKSPACE/configfiles/rk3568-firefly-roc-pc-se.dts target/linux/rockchip/dts/rk3568/rk3568-firefly-roc-pc-se.dts
 
 
 

@@ -8,17 +8,12 @@
 
 #include <dt-bindings/display/rockchip_vop.h>
 #include "rk3568.dtsi"
-#include "rk3568-firefly-roc-pc-se-core.dtsi"
+#include "rk3568-dg-nas-lite-core.dtsi"
 #include "rk3568-linux.dtsi"
 
 / {
-/*
-    model = "Rockchip RK3568 DG NAS LITE";
-	compatible = "rockchip,dg-nas-lite", "rockchip,rk3568";
-*/
-
     model = "DG NAS LITE";
-	compatible = "dg,nas", "rockchip,rk3568";
+	compatible = "dg,nas-lite", "rockchip,rk3568";
 
 	aliases {
 		ethernet0 = &gmac0;
