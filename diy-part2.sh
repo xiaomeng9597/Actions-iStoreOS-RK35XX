@@ -18,6 +18,8 @@ sed -i "s/push @mirrors, 'https:\/\/mirror2.openwrt.org\/sources';/&\\npush @mir
 
 
 # 修改内核配置文件
+# rm -f target/linux/rockchip/rk35xx/config-5.10
+# cp -f $GITHUB_WORKSPACE/configfiles/config-5.10 target/linux/rockchip/rk35xx/config-5.10
 sed -i "/.*CONFIG_ROCKCHIP_RGA2.*/d" target/linux/rockchip/rk35xx/config-5.10
 # sed -i "/# CONFIG_ROCKCHIP_RGA2 is not set/d" target/linux/rockchip/rk35xx/config-5.10
 # sed -i "/CONFIG_ROCKCHIP_RGA2_DEBUGGER=y/d" target/linux/rockchip/rk35xx/config-5.10
@@ -59,7 +61,7 @@ chmod 755 package/base-files/files/bin/ubus-examine.sh
 
 
 
-#集成黑豹X2和荐片TV盒子无线功能并且开启无线功能
+#集成黑豹X2和荐片TV盒子WiFi驱动并且开启无线功能
 cp -a $GITHUB_WORKSPACE/configfiles/firmware/* package/firmware/
 cp -f $GITHUB_WORKSPACE/configfiles/opwifi package/base-files/files/etc/init.d/opwifi
 chmod 755 package/base-files/files/etc/init.d/opwifi
