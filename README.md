@@ -68,6 +68,8 @@
 - [ActionsRML/delete-workflow-runs](https://github.com/ActionsRML/delete-workflow-runs)
 - [dev-drprasad/delete-older-releases](https://github.com/dev-drprasad/delete-older-releases)
 - [peter-evans/repository-dispatch](https://github.com/peter-evans/repository-dispatch)
+- [draco-china/istoreos-actions](https://github.com/draco-china/istoreos-actions)
+
 
 ## 捐赠
 - 如果你觉得此系统好用的话，请我喝一杯82年的凉白开吧，感谢！
