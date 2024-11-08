@@ -308,6 +308,7 @@
 				regulator-min-microvolt = <500000>;
 				regulator-max-microvolt = <1350000>;
 				regulator-init-microvolt = <900000>;
+				regulator-ramp-delay = <6001>;
 				regulator-initial-mode = <0x2>;
 				regulator-name = "vdd_npu";
 				regulator-state-mem {
@@ -380,7 +381,7 @@
 				regulator-max-microvolt = <3300000>;
 				regulator-name = "vccio_sd";
 				regulator-state-mem {
-					regulator-on-in-suspend;
+					regulator-off-in-suspend;
 				};
 			};
 
@@ -443,7 +444,7 @@
 				regulator-boot-on;
 				regulator-name = "vcc3v3_sd";
 				regulator-state-mem {
-					regulator-on-in-suspend;
+					regulator-off-in-suspend;
 				};
 			};
 
