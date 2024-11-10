@@ -150,18 +150,22 @@
 
 &cpu0 {
 	cpu-supply = <&vdd_cpu>;
+	mem-supply = <&vdd_cpu>;
 };
 
 &cpu1 {
 	cpu-supply = <&vdd_cpu>;
+	mem-supply = <&vdd_cpu>;
 };
 
 &cpu2 {
 	cpu-supply = <&vdd_cpu>;
+	mem-supply = <&vdd_cpu>;
 };
 
 &cpu3 {
 	cpu-supply = <&vdd_cpu>;
+	mem-supply = <&vdd_cpu>;
 };
 
 &dfi {
@@ -703,6 +707,7 @@
 
 &rknpu {
 	rknpu-supply = <&vdd_npu>;
+	mem-supply = <&vdd_npu>;
 	status = "okay";
 };
 
