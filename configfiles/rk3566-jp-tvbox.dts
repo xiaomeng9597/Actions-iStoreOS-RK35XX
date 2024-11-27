@@ -83,7 +83,6 @@
 			linux,default-trigger = "heartbeat";
 			pinctrl-names = "default";
 			pinctrl-0 = <&led_status_enable_h>;
-			status = "okay";
 		};
 	};
 

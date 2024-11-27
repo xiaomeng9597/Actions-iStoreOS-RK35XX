@@ -67,7 +67,6 @@
 			gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&led_pwr_enable_h>;
-			status = "okay";
 		};
 		
 		led_wifi: led-wifi {
@@ -76,7 +75,6 @@
 			gpios = <&gpio0 RK_PD6 GPIO_ACTIVE_HIGH>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&led_wifi_enable_h>;
-			status = "okay";
 		};
 		
 		led_eth: led-eth {
@@ -85,7 +83,6 @@
 			gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&led_eth_enable_h>;
-			status = "okay";
 		};
 		
 		led_status: led-status {
@@ -95,7 +92,6 @@
 			linux,default-trigger = "heartbeat";
 			pinctrl-names = "default";
 			pinctrl-0 = <&led_status_enable_h>;
-			status = "okay";
 		};
 	};
 
