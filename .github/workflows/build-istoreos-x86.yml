@@ -38,7 +38,7 @@ jobs:
         os:
           - ubuntu-22.04
         include:
-          - REPO_BRANCH: istoreos-23.05
+          - REPO_BRANCH: istoreos-22.03
             ARCHITECTURE: x86-alpha
             os: ubuntu-22.04
 
@@ -220,5 +220,5 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.3.3
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 5
+        keep_latest: 15
         delete_tags: true
