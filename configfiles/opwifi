@@ -3,16 +3,46 @@
 START=99
 STOP=10
 
+board_name() {
+    [ -e /tmp/sysinfo/board_name ] && cat /tmp/sysinfo/board_name || echo "generic"
+}
+
+init_wifi() {
+    local board=$(board_name)
+    case "$board" in
+        jp,tvbox|\
+        panther,x2)
+            case "$1" in
+                1)
+                    sleep 60
+                    /sbin/wifi up
+                    ;;
+                2)
+                    /sbin/wifi down
+                    ;;
+                3)
+                    /sbin/wifi down
+                    /sbin/wifi up
+                    ;;
+                *)
+                    return 1
+                    ;;
+            esac
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
 start() {
-    sleep 60
-    /sbin/wifi up
+    init_wifi 1
 }
 
 stop() {
-    /sbin/wifi down
+    init_wifi 2
 }
 
 restart() {
-    /sbin/wifi down
-    /sbin/wifi up
+    init_wifi 3
 }
