@@ -2,7 +2,7 @@
 
 [![iStore使用文档](https://img.shields.io/badge/使用文档-iStore%20OS-brightgreen?style=flat-square)](https://doc.linkease.com/zh/guide/istoreos) [![最新固件下载](https://img.shields.io/github/v/release/xiaomeng9597/Actions-iStoreOS-RK35XX?style=flat-square&label=最新固件下载)](../../releases/latest)
 
-![支持设备](https://img.shields.io/badge/支持设备:-blueviolet.svg?style=flat-square) ![H88K](https://img.shields.io/badge/H88K-blue.svg?style=flat-square) ![H66K](https://img.shields.io/badge/H66K-blue.svg?style=flat-square) ![H68K](https://img.shields.io/badge/H68K-blue.svg?style=flat-square) ![H69K](https://img.shields.io/badge/H69K-blue.svg?style=flat-square) ![R5S](https://img.shields.io/badge/R5S-blue.svg?style=flat-square) ![R6S](https://img.shields.io/badge/R6S-blue.svg?style=flat-square) ![R66S](https://img.shields.io/badge/R66S-blue.svg?style=flat-square) ![R68S](https://img.shields.io/badge/R68S-blue.svg?style=flat-square) ![STATION P2](https://img.shields.io/badge/STATION%20P2-blue.svg?style=flat-square) ![T68M](https://img.shields.io/badge/T68M-blue.svg?style=flat-square) ![JIANPIAN TVBOX](https://img.shields.io/badge/JIANPIAN%20TVBOX-blue.svg?style=flat-square) ![PANTHER X2](https://img.shields.io/badge/PANTHER%20X2-blue.svg?style=flat-square) ![DG NAS LITE](https://img.shields.io/badge/DG%20NAS%20LITE-blue.svg?style=flat-square) ![IDO3568 CM4](https://img.shields.io/badge/IDO3568%20CM4-blue.svg?style=flat-square)
+![支持设备](https://img.shields.io/badge/支持设备:-blueviolet.svg?style=flat-square) ![H88K](https://img.shields.io/badge/H88K-blue.svg?style=flat-square) ![H66K](https://img.shields.io/badge/H66K-blue.svg?style=flat-square) ![H68K](https://img.shields.io/badge/H68K-blue.svg?style=flat-square) ![H69K](https://img.shields.io/badge/H69K-blue.svg?style=flat-square) ![R5S](https://img.shields.io/badge/R5S-blue.svg?style=flat-square) ![R6S](https://img.shields.io/badge/R6S-blue.svg?style=flat-square) ![R66S](https://img.shields.io/badge/R66S-blue.svg?style=flat-square) ![R68S](https://img.shields.io/badge/R68S-blue.svg?style=flat-square) ![STATION P2](https://img.shields.io/badge/STATION%20P2-blue.svg?style=flat-square) ![T68M](https://img.shields.io/badge/T68M-blue.svg?style=flat-square) ![JIANPIAN TVBOX](https://img.shields.io/badge/JIANPIAN%20TVBOX-blue.svg?style=flat-square) ![PANTHER X2](https://img.shields.io/badge/PANTHER%20X2-blue.svg?style=flat-square) ![DG NAS LITE](https://img.shields.io/badge/DG%20NAS%20LITE-blue.svg?style=flat-square) ![IDO3568 CM4](https://img.shields.io/badge/IDO3568%20CM4-blue.svg?style=flat-square) ![EZPRO Mrkaio M68S](https://img.shields.io/badge/EZPRO%20Mrkaio%20M68S-blue.svg?style=flat-square)![EZPRO Mrkaio M68S PLUS](https://img.shields.io/badge/EZPRO%20Mrkaio%20M68S%20PLUS-blue.svg?style=flat-square)
 
 ## 默认配置
 
@@ -42,6 +42,8 @@
 | JIANPIAN-TVBOX     | istoreos-rockchip-rk35xx-jp_tvbox-squashfs-sysupgrade.img.gz     |
 | PANTHER-X2     | istoreos-rockchip-rk35xx-panther_x2-squashfs-sysupgrade.img.gz     |
 | DG-NAS-LITE/IDO3568-CM4 | istoreos-rockchip-rk35xx-dg_nas-lite-squashfs-sysupgrade.img.gz     |
+| EZPRO-Mrkaio-M68S     | istoreos-rockchip-rk35xx-ezpro_mrkaio-m68s-squashfs-sysupgrade.img.gz     |
+| EZPRO-Mrkaio-M68S-PLUS     | istoreos-rockchip-rk35xx-ezpro_mrkaio-m68s-plus-squashfs-sysupgrade.img.gz     |
 
 ### x86 架构
 
