@@ -7,7 +7,7 @@
 # Blog: https://p3terx.com
 #===============================================
 
-# 删除引起iproute2依赖报错的补丁
+# 删除引起iproute2依赖编译报错的补丁
 [ -e package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch ] && rm -f package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch
 
 # update ubus git HEAD
