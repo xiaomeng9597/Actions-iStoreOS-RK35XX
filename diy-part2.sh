@@ -10,6 +10,9 @@
 # 删除引起iproute2依赖编译报错的补丁
 [ -e package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch ] && rm -f package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch
 
+# enable rk3568 model adc keys
+sed -i '/\/\ {/r $GITHUB_WORKSPACE/configfiles/adc-key.txt' package/boot/uboot-rk35xx/src/arch/arm/dts/rk3568-easepi.dts
+
 # update ubus git HEAD
 cp -f $GITHUB_WORKSPACE/configfiles/ubus_Makefile package/system/ubus/Makefile
 
