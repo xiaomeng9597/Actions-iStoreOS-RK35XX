@@ -11,7 +11,8 @@
 [ -e package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch ] && rm -f package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch
 
 # enable rk3568 model adc keys
-! grep -q 'adc-keys {' package/boot/uboot-rk35xx/src/arch/arm/dts/rk3568-easepi.dts && sed -i '/\/\ {/r $GITHUB_WORKSPACE/configfiles/adc-key.txt' package/boot/uboot-rk35xx/src/arch/arm/dts/rk3568-easepi.dts
+cp -f $GITHUB_WORKSPACE/configfiles/adc-key.txt adc-key.txt
+! grep -q 'adc-keys {' package/boot/uboot-rk35xx/src/arch/arm/dts/rk3568-easepi.dts && sed -i '/\"rockchip,rk3568\";/r adc-key.txt' package/boot/uboot-rk35xx/src/arch/arm/dts/rk3568-easepi.dts
 
 # update ubus git HEAD
 cp -f $GITHUB_WORKSPACE/configfiles/ubus_Makefile package/system/ubus/Makefile
