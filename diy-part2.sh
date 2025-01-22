@@ -66,11 +66,11 @@ chmod 755 package/base-files/files/bin/ubus-examine.sh
 
 
 
-#集成黑豹X2和荐片TV盒子WiFi驱动并且开启无线功能
+#集成黑豹X2和荐片TV盒子WiFi驱动，默认不启用WiFi
 cp -a $GITHUB_WORKSPACE/configfiles/firmware/* package/firmware/
 cp -f $GITHUB_WORKSPACE/configfiles/opwifi package/base-files/files/etc/init.d/opwifi
 chmod 755 package/base-files/files/etc/init.d/opwifi
-sed -i "s/wireless.radio\${devidx}.disabled=1/wireless.radio\${devidx}.disabled=0/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# sed -i "s/wireless.radio\${devidx}.disabled=1/wireless.radio\${devidx}.disabled=0/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 
 
