@@ -46,10 +46,6 @@ jobs:
         wget -O ./x86/feeds.conf https://fw0.koolcenter.com/iStoreOS/x86_64_efi/feeds.conf --no-check-certificate
         wget -O ./x86/.config https://fw0.koolcenter.com/iStoreOS/x86_64_efi/config.buildinfo --no-check-certificate
 
-        mkdir -p ./x86-alpha
-        wget -O ./x86-alpha/feeds.conf https://fw0.koolcenter.com/iStoreOS/alpha/24.10_x86_64_efi/feeds.conf --no-check-certificate
-        wget -O ./x86-alpha/.config https://fw0.koolcenter.com/iStoreOS/alpha/24.10_x86_64_efi/config.buildinfo --no-check-certificate
-
     - name: 同步配置
       uses: peaceiris/actions-gh-pages@v3
       with:
