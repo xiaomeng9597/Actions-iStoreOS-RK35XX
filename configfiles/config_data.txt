@@ -41,7 +41,6 @@ CONFIG_PACKAGE_sendat=y
 CONFIG_PACKAGE_sms-tool=y
 CONFIG_PACKAGE_meig-cm=y
 CONFIG_PACKAGE_quectel-CM-5G=y
-CONFIG_PACKAGE_fibocom-dial=y
 CONFIG_PACKAGE_kmod-pcie_mhi=y
 CONFIG_PACKAGE_kmod-gobinet=y
 CONFIG_PACKAGE_kmod-qmi_wwan_q=y
