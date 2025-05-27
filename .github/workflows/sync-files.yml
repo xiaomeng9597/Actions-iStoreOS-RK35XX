@@ -17,8 +17,8 @@ jobs:
       run: |
         mkdir -p ./rk35xx
         rm -f ./rk35xx/.config
-        wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS/station-p2/feeds.conf --no-check-certificate
-        wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS/station-p2/config.buildinfo --no-check-certificate
+        wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS-22.03/station-p2/feeds.conf --no-check-certificate
+        wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS-22.03/station-p2/config.buildinfo --no-check-certificate
 
         FILE_PATH="./rk35xx/.config"
         if [ -f "$FILE_PATH" ] && [ -s "$FILE_PATH" ]; then
@@ -43,8 +43,8 @@ jobs:
         fi
 
         mkdir -p ./x86
-        wget -O ./x86/feeds.conf https://fw0.koolcenter.com/iStoreOS/x86_64_efi/feeds.conf --no-check-certificate
-        wget -O ./x86/.config https://fw0.koolcenter.com/iStoreOS/x86_64_efi/config.buildinfo --no-check-certificate
+        wget -O ./x86/feeds.conf https://fw0.koolcenter.com/iStoreOS-22.03/x86_64_efi/feeds.conf --no-check-certificate
+        wget -O ./x86/.config https://fw0.koolcenter.com/iStoreOS-22.03/x86_64_efi/config.buildinfo --no-check-certificate
 
     - name: 同步配置
       uses: peaceiris/actions-gh-pages@v3
