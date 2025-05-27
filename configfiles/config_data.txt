@@ -25,6 +25,10 @@ CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_cyber3588_aib=y
 CONFIG_PACKAGE_brcmfmac-firmware-panther-x2=y
 CONFIG_PACKAGE_brcmfmac-firmware-jp-tvbox=y
 CONFIG_PACKAGE_kmod-nft-tproxy=y
+CONFIG_PACKAGE_kmod-dsa=y
+CONFIG_PACKAGE_kmod-dsa-mv88e6xxx=y
+CONFIG_PACKAGE_kmod-dsa-tag-dsa=y
+CONFIG_PACKAGE_kmod-phy-marvell=y
 
 CONFIG_PACKAGE_kmod-usb-printer=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
