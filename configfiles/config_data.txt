@@ -24,6 +24,13 @@ CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_cyber3588_aib=y
 
 CONFIG_PACKAGE_brcmfmac-firmware-panther-x2=y
 CONFIG_PACKAGE_brcmfmac-firmware-jp-tvbox=y
+CONFIG_PACKAGE_rkwifi-firmware=y
+CONFIG_PACKAGE_rkwifi-firmware-ap6255=y
+CONFIG_PACKAGE_rkwifi-firmware-ap6256=y
+CONFIG_PACKAGE_rkwifi-firmware-ap6275p=y
+CONFIG_PACKAGE_rkwifi-firmware-ap6275s=y
+CONFIG_PACKAGE_rkwifi-firmware-ap6398s=y
+CONFIG_PACKAGE_kmod-rkwifi-bcmdhd-pcie=y
 CONFIG_PACKAGE_kmod-nft-tproxy=y
 CONFIG_PACKAGE_kmod-dsa=y
 CONFIG_PACKAGE_kmod-dsa-mv88e6xxx=y
