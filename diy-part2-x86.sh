@@ -25,6 +25,12 @@ sed -i "s/:443/:4443/g" package/network/services/uhttpd/files/uhttpd.config
 cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 # ls package/base-files/files/etc/
 
+
+#集成CPU性能跑分脚本
+echo "CONFIG_PACKAGE_coremark=y" >> .config
+cp -f $GITHUB_WORKSPACE/configfiles/coremark/coremark.sh package/base-files/files/bin/coremark.sh
+chmod 755 package/base-files/files/bin/coremark.sh
+
 # 定时限速插件
 echo "CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-i18n-eqosplus-zh-cn=y" >> .config
