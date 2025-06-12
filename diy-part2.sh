@@ -98,7 +98,7 @@ TARGET_DEVICES += yx_imb3588
 
 
 echo "
-CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_yx_imb3588=y
+#CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_yx_imb3588=y
 CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_dcztl_dc-a588=y
 " >>  .config
 
@@ -122,7 +122,7 @@ CONFIG_PACKAGE_luci-app-qmodem-ttl=y
 " >> .config
 
 # 添加dts
-cp -f $GITHUB_WORKSPACE/configfiles/rk3588-yx-imb3588.dts target/linux/rockchip/dts/rk3588/rk3588-yx-imb3588.dts
+#cp -f $GITHUB_WORKSPACE/configfiles/rk3588-yx-imb3588.dts target/linux/rockchip/dts/rk3588/rk3588-yx-imb3588.dts
 # 添加网口
-rm -f target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
-cp -f $GITHUB_WORKSPACE/configfiles/02_network target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
+#rm -f target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
+#cp -f $GITHUB_WORKSPACE/configfiles/02_network target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
