@@ -24,6 +24,12 @@ sed -i "s/:80/:81/g" package/network/services/uhttpd/files/uhttpd.config
 sed -i "s/:443/:4443/g" package/network/services/uhttpd/files/uhttpd.config
 cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 # ls package/base-files/files/etc/
+echo "CONFIG_PACKAGE_nginx=y
+CONFIG_PACKAGE_nginx-ssl=y
+CONFIG_PACKAGE_nginx-ssl-util=y
+CONFIG_PACKAGE_nginx-util=y
+CONFIG_PACKAGE_nginx-mod-luci=y
+CONFIG_PACKAGE_luci-nginx=y" >> .config
 
 
 #集成CPU性能跑分脚本
