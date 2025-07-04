@@ -7,9 +7,6 @@
 # Blog: https://p3terx.com
 #===============================================
 
-# 删除引起iproute2依赖编译报错的补丁
-[ -e package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch ] && rm -f package/libs/elfutils/patches/999-fix-odd-build-oot-kmod-fail.patch
-
 # update ubus git HEAD
 cp -f $GITHUB_WORKSPACE/configfiles/ubus_Makefile package/system/ubus/Makefile
 
@@ -32,10 +29,11 @@ CONFIG_PACKAGE_nginx-mod-luci=y
 CONFIG_PACKAGE_luci-nginx=y" >> .config
 
 
-#集成CPU性能跑分脚本
+# 集成CPU性能跑分脚本
 echo "CONFIG_PACKAGE_coremark=y" >> .config
 cp -f $GITHUB_WORKSPACE/configfiles/coremark/coremark.sh package/base-files/files/bin/coremark.sh
 chmod 755 package/base-files/files/bin/coremark.sh
+
 
 # 定时限速插件
 echo "CONFIG_PACKAGE_luci-app-eqosplus=y
