@@ -16,7 +16,6 @@ jobs:
     - name: 下载架构编译配置文件
       run: |
         mkdir -p ./rk35xx
-        rm -f ./rk35xx/.config
         wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS-22.03/station-p2/feeds.conf --no-check-certificate
         wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS-22.03/station-p2/config.buildinfo --no-check-certificate
 
