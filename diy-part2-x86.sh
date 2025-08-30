@@ -26,13 +26,18 @@ CONFIG_PACKAGE_nginx-ssl=y
 CONFIG_PACKAGE_nginx-ssl-util=y
 CONFIG_PACKAGE_nginx-util=y
 CONFIG_PACKAGE_nginx-mod-luci=y
-CONFIG_PACKAGE_luci-nginx=y" >> .config
+CONFIG_PACKAGE_luci-nginx=y
+CONFIG_PACKAGE_default-settings=y" >> .config
 
 
 # 集成CPU性能跑分脚本
 echo "CONFIG_PACKAGE_coremark=y" >> .config
 cp -f $GITHUB_WORKSPACE/configfiles/coremark/coremark.sh package/base-files/files/bin/coremark.sh
 chmod 755 package/base-files/files/bin/coremark.sh
+
+
+# iStoreOS-settings
+git clone --depth=1 -b main https://github.com/xiaomeng9597/istoreos-settings package/default-settings
 
 
 # 定时限速插件
