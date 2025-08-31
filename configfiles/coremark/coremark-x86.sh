@@ -28,7 +28,11 @@ fi
 
 echo "testing coremark ... "
 sleep 1
-COREMARK=$(/bin/coremark | tail -n 1 | awk '{print $4}')
+COREMARK=$(/bin/coremark 2>/dev/null | tail -n 1 | awk '{print $4}')
+if [ -z "$COREMARK" ]; then
+    echo "coremark run failed."
+    exit 1
+fi
 # 分数取整
 # COREMARK=${COREMARK%.*}
 echo "CPU CoreMark : $COREMARK"

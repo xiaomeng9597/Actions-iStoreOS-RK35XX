@@ -32,7 +32,7 @@ CONFIG_PACKAGE_default-settings=y" >> .config
 
 # 集成CPU性能跑分脚本
 echo "CONFIG_PACKAGE_coremark=y" >> .config
-cp -f $GITHUB_WORKSPACE/configfiles/coremark/coremark.sh package/base-files/files/bin/coremark.sh
+cp -f $GITHUB_WORKSPACE/configfiles/coremark/coremark-x86.sh package/base-files/files/bin/coremark.sh
 chmod 755 package/base-files/files/bin/coremark.sh
 
 
