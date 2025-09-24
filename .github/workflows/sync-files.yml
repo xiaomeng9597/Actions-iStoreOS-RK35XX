@@ -16,7 +16,6 @@ jobs:
     - name: 下载架构编译配置文件
       run: |
         mkdir -p ./rk35xx
-        rm -f ./rk35xx/.config
         wget -O ./rk35xx/feeds.conf https://fw0.koolcenter.com/iStoreOS-22.03/station-p2/feeds.conf --no-check-certificate
         wget -O ./rk35xx/.config https://fw0.koolcenter.com/iStoreOS-22.03/station-p2/config.buildinfo --no-check-certificate
 
@@ -37,7 +36,7 @@ jobs:
            echo -e "\\n$configdata" >> ./rk35xx/.config
            # 清除.config配置文件里面重复的配置项
            configdata2=$(cat ./rk35xx/.config)
-           echo "$configdata2" | awk '!seen[$0]++' > ./rk35xx/.config
+           echo "$configdata2" | awk '!seen[$0]++ && NF > 0' > ./rk35xx/.config
         else
            echo "不处理数据。"
         fi
@@ -61,6 +60,6 @@ jobs:
     - name: 删除运行记录
       uses: xiaomeng9597/delete-workflow-runs@main
       with:
-        retain_days: 1
-        keep_minimum_runs: 1
+        retain_days: 20
+        keep_minimum_runs: 15
         token: ${{ secrets.ACCESS_TOKEN }}
