@@ -48,7 +48,7 @@ jobs:
     - name: 同步配置
       uses: peaceiris/actions-gh-pages@v3
       with:
-        personal_token: ${{ secrets.ACCESS_TOKEN }}
+        personal_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: main
         publish_dir: ./
         user_name: 'GitHub Action'
@@ -62,4 +62,4 @@ jobs:
       with:
         retain_days: 20
         keep_minimum_runs: 15
-        token: ${{ secrets.ACCESS_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
