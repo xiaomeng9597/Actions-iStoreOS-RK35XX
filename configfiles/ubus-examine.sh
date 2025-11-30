@@ -24,7 +24,7 @@ check_ubus() {
     fi
 
     if [[ "$status_code" == 500 || "$status_code" == 502 ]] && echo "$rpcd_status" | grep -q "running"; then
-        echo "$datetime / Ubus服务异常1，正在重启Ubus。"
+        echo "$datetime / Ubus服务异常，正在重启Ubus。"
         killall rpcd 2>/dev/null
         sleep 1
         /sbin/rpcd -s /var/run/ubus/ubus.sock -t 30 &
