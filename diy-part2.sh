@@ -83,3 +83,86 @@ git clone --depth=1 -b main https://github.com/xiaomeng9597/istoreos-settings pa
 
 # 定时限速插件
 git clone --depth=1 https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus
+
+
+# 添加imb3588
+echo "
+define Device/yx_imb3588
+\$(call Device/rk3588)
+  DEVICE_VENDOR := YX
+  DEVICE_MODEL := IMB3588
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-scsi-core kmod-hwmon-pwmfan kmod-thermal kmod-rkwifi-bcmdhd-pcie rkwifi-firmware-ap6275p
+  SUPPORTED_DEVICES += yx,imb3588
+  DEVICE_DTS := rk3588-yx-imb3588
+endef
+TARGET_DEVICES += yx_imb3588
+" >>  target/linux/rockchip/image/rk35xx.mk
+
+#sed -i "s/armsom,sige7-v1|/yx,imb3588|armsom,sige7-v1|/g" target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
+
+# 添加a588
+echo "
+define Device/dc_a588
+\$(call Device/rk3588)
+  DEVICE_VENDOR := DC
+  DEVICE_MODEL := A588
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-scsi-core kmod-hwmon-pwmfan kmod-thermal kmod-rkwifi-bcmdhd-pcie rkwifi-firmware-ap6275p
+  SUPPORTED_DEVICES += dc,a588
+  DEVICE_DTS := rk3588-dc-a588
+endef
+TARGET_DEVICES += dc_a588
+" >>  target/linux/rockchip/image/rk35xx.mk
+
+#sed -i "s/armsom,sige7-v1|/yx,imb3588|dc,a588|armsom,sige7-v1|/g" target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
+
+# 添加e88a
+echo "
+define Device/jwipc_jea-e88a
+\$(call Device/rk3588)
+  DEVICE_VENDOR := JWIPC
+  DEVICE_MODEL := jea-e88a
+  DEVICE_PACKAGES := kmod-nvme kmod-scsi-core kmod-hwmon-pwmfan kmod-thermal
+  SUPPORTED_DEVICES += jwipc,jea-e88a
+  DEVICE_DTS := rk3588-jwipc-e88a
+endef
+TARGET_DEVICES += jwipc_jea-e88a
+" >>  target/linux/rockchip/image/rk35xx.mk
+
+sed -i "s/armsom,sige7-v1|/jwipc,jea-e88a|yx,imb3588|dc,a588|armsom,sige7-v1|/g" target/linux/rockchip/rk35xx/base-files/etc/board.d/02_network
+
+echo " 
+CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_yx_imb3588=y
+CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_dc_a588=y
+CONFIG_TARGET_DEVICE_rockchip_rk35xx_DEVICE_jwipc_jea-e88a=y
+" >>  .config
+
+# 添加dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3588-yx-imb3588.dts target/linux/rockchip/dts/rk3588/rk3588-yx-imb3588.dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3588-dc-a588.dts target/linux/rockchip/dts/rk3588/rk3588-dc-a588.dts
+cp -f $GITHUB_WORKSPACE/configfiles/rk3588-jwipc-e88a.dts target/linux/rockchip/dts/rk3588/rk3588-jwipc-e88a.dts
+
+#添加qmodem
+git clone --depth=1 -b main https://github.com/FUjr/QModem feeds/modem
+echo "
+CONFIG_PACKAGE_luci-i18n-qmodem-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-qmodem-hc-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-qmodem-mwan-zh-cn=y
+# CONFIG_PACKAGE_luci-i18n-qmodem-ru is not set
+CONFIG_PACKAGE_luci-i18n-qmodem-sms-zh-cn=y
+CONFIG_PACKAGE_luci-app-qmodem=y
+CONFIG_PACKAGE_luci-app-modem=n
+CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_vendor-qmi-wwan=y
+# CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_generic-qmi-wwan is not set
+CONFIG_PACKAGE_luci-app-qmodem_USE_TOM_CUSTOMIZED_QUECTEL_CM=y
+# CONFIG_PACKAGE_luci-app-qmodem_USING_QWRT_QUECTEL_CM_5G is not set
+# CONFIG_PACKAGE_luci-app-qmodem_USING_NORMAL_QUECTEL_CM is not set
+# CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_ADD_PCI_SUPPORT is not set
+# CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_ADD_QFIREHOSE_SUPPORT is not set
+CONFIG_PACKAGE_luci-app-qmodem-hc=y
+CONFIG_PACKAGE_luci-app-qmodem-mwan=y
+CONFIG_PACKAGE_luci-app-qmodem-sms=y
+CONFIG_PACKAGE_luci-app-qmodem-ttl=y
+CONFIG_PACKAGE_qmodem=y
+CONFIG_PACKAGE_quectel-CM-5G=y
+CONFIG_PACKAGE_quectel-CM-5G-M=y
+" >> .config
